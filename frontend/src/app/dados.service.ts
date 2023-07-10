@@ -11,6 +11,6 @@ export class DadosService {
   constructor(private http: HttpClient) { }
 
   getDados(): Observable<any> {
-    return this.http.get('http://localhost:3000/alunocarro');
+    return this.http.get('http://localhost:3000/lavouras');
   }
 }
