@@ -13,8 +13,8 @@
     <label for="imagem">Imagem:</label>
     <input type="file" id="imagem" required><br><br>
     <label for="estagios">Estágios:</label>
-    <select id="estagios" [(ngModel)]="mostrarDescricaoEstagios" required>
-      <option value="1">1</option>
+    <select id="estagios" [(ngModel)]="mostrarDescricaoEstagios"  required>
+      <option value="1" >1</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
@@ -39,7 +39,7 @@
     </div>
     <div *ngIf="mostrarDescricaoEstagios >= 5">
       <label for="descricao_Estagio_5">Numero de dias do 5° estágio: </label>
-      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao('Estagio_1')">
+      <input type="number" id="descricao_Estagio_1=5" (change)="Editar_Descricao('Estagio_5')">
     </div>
 
     <label for="colheitas">Colheitas:</label>
@@ -50,7 +50,7 @@
 
     <div *ngIf="mostrarDescricaoColheitas >= 1">
       <label for="descricao_Estagio_1">Numero total de dias para colheita: </label>
-      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao('Colheita_1')">
+      <input type="number" id="descricao_Colheita_1" (change)="Editar_Descricao('Colheita_1')">
     </div>
     <div *ngIf="mostrarDescricaoColheitas >= 2">
       <label for="descricao_Colheita_2">Numero total de dias para a próxima colheita: </label>

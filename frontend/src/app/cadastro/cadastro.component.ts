@@ -8,8 +8,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CadastroComponent implements OnInit{
   formularioCadastro!: FormGroup;
-  mostrarDescricaoEstagios!: number;
-  mostrarDescricaoColheitas!: number;
+  mostrarDescricaoEstagios: number = 0;
+  mostrarDescricaoColheitas: number = 0;
 
   Editar_Descricao(id: string) {
     var inputElement = document.getElementById(`descricao_${id}`) as HTMLInputElement;
@@ -24,6 +24,7 @@ export class CadastroComponent implements OnInit{
     // Atualizar o modelo de dados com o valor manipulado
     this.formularioCadastro.patchValue({[`${id}_descricao`]: valorManipulado});
   }
+  
   enviarFormulario(){
     
   }
