@@ -23,23 +23,23 @@
 
     <div *ngIf="mostrarDescricaoEstagios >= 1">
       <label for="descricao_Estagio_1">Numero de dias do 1° estágio: </label>
-      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao(Estagio_1)">
+      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao('Estagio_1')">
     </div>
     <div *ngIf="mostrarDescricaoEstagios >= 2">
       <label for="descricao_Estagio_2">Numero de dias do 2° estágio: </label>
-      <input type="number" id="descricao_Estagio_2" (change)="Editar_Descricao(Estagio_2)">
+      <input type="number" id="descricao_Estagio_2" (change)="Editar_Descricao('Estagio_2')">
     </div>
     <div *ngIf="mostrarDescricaoEstagios >= 3">
       <label for="descricao_Estagio_3">Numero de dias do 3° estágio: </label>
-      <input type="number" id="descricao_Estagio_3" (change)="Editar_Descricao(Estagio_3)">
+      <input type="number" id="descricao_Estagio_3" (change)="Editar_Descricao('Estagio_3')">
     </div>
     <div *ngIf="mostrarDescricaoEstagios >= 4">
       <label for="descricao_Estagio_4">Numero de dias do 4° estágio: </label>
-      <input type="number" id="descricao_Estagio_4" (change)="Editar_Descricao(Estagio_4)">
+      <input type="number" id="descricao_Estagio_4" (change)="Editar_Descricao('Estagio_4')">
     </div>
     <div *ngIf="mostrarDescricaoEstagios >= 5">
       <label for="descricao_Estagio_5">Numero de dias do 5° estágio: </label>
-      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao(Estagio_1)">
+      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao('Estagio_1')">
     </div>
 
     <label for="colheitas">Colheitas:</label>
@@ -50,11 +50,11 @@
 
     <div *ngIf="mostrarDescricaoColheitas >= 1">
       <label for="descricao_Estagio_1">Numero total de dias para colheita: </label>
-      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao(Colheita_1)">
+      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao('Colheita_1')">
     </div>
     <div *ngIf="mostrarDescricaoColheitas >= 2">
       <label for="descricao_Colheita_2">Numero total de dias para a próxima colheita: </label>
-      <input type="number" id="descricao_Colheita_2" (change)="Editar_Descricao(Colheita_2)">
+      <input type="number" id="descricao_Colheita_2" (change)="Editar_Descricao('Colheita_2')">
     </div>
 
     <input type="button" value="Enviar" (click)="enviarFormulario()">

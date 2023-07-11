@@ -10,21 +10,23 @@ export class CadastroComponent implements OnInit{
   formularioCadastro!: FormGroup;
   mostrarDescricaoEstagios!: number;
   mostrarDescricaoColheitas!: number;
-  
+
   Editar_Descricao(id: string) {
     var inputElement = document.getElementById(`descricao_${id}`) as HTMLInputElement;
     var valor = inputElement.valueAsNumber
     if (inputElement.id.includes('Estagio'))
       var valorManipulado = valor + (valor == 1 ? " Dia" : " Dias")
     else
-      if (parseInt(id.replace("Colheita_", "")) == 2)	
+      if (this.mostrarDescricaoColheitas == 2)	
         var valorManipulado = (valor == 1 ? "Continua a produzir todo dia." : "Continua a produzir a cada " + valor + "dias");
       else
         var valorManipulado = "Total:" + valor + " Dias";
     // Atualizar o modelo de dados com o valor manipulado
     this.formularioCadastro.patchValue({[`${id}_descricao`]: valorManipulado});
   }
-
+  enviarFormulario(){
+    
+  }
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
