@@ -9,27 +9,37 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CadastroComponent implements OnInit{
   formularioCadastro!: FormGroup;
   mostrarDescricaoEstagios: number = 0;
-  mostrarDescricaoColheitas: number = 0;
-
+  mostrarDescricao: number = 0;
+  listImage: string[] = [];
+  
   
   @ViewChild('estagiosSelect') estagiosSelect: any;
-  @ViewChild('colheitasSelect') colheitasSelect: any;
+  @ViewChild('descricaoSelect') descricaoSelect: any;
   
   // Adicione um método para lidar com a alteração do valor selecionado
-  onChangeEstagios() {
-    this.mostrarDescricaoEstagios = +this.estagiosSelect.nativeElement.value;
+
+  onChangeDescricao() {
+    if(this.listImage.length != 8){
+      if (this.descricaoSelect.nativeElement.value == 0){
+        this.mostrarDescricaoEstagios = 0;
+        this.mostrarDescricao = 0;
+      }
+      this.mostrarDescricaoEstagios = this.listImage.length -1 -this.descricaoSelect.nativeElement.value;
+      this.mostrarDescricao = +this.descricaoSelect.nativeElement.value;
+    }
   }
-  onChangeColheitas() {
-    this.mostrarDescricaoColheitas = +this.colheitasSelect.nativeElement.value;
-  }
+  /*var partImage = new Image();
+  this.listImage.push(partCanvas.toDataURL())
+  partImage.src = this.listImage[i-1];   
   
+  outputContainer.appendChild(partImage);*/
   Editar_Descricao(id: string) {
     var inputElement = document.getElementById(`descricao_${id}`) as HTMLInputElement;
     var valor = inputElement.valueAsNumber
     if (inputElement.id.includes('Estagio'))
       var valorManipulado = valor + (valor == 1 ? " Dia" : " Dias")
     else
-      if (this.mostrarDescricaoColheitas == 2)	
+      if (this.mostrarDescricao == 2)	
         var valorManipulado = (valor == 1 ? "Continua a produzir todo dia." : "Continua a produzir a cada " + valor + "dias");
       else
         var valorManipulado = "Total:" + valor + " Dias";
@@ -45,11 +55,11 @@ export class CadastroComponent implements OnInit{
     var file = inputElement.files?.[0];
     var reader = new FileReader();
 
-    reader.onloadend = function() {
+    reader.onloadend = () => {
       var img = new Image();
       img.src = reader.result as string;
 
-      img.onload = function() {
+      img.onload = () => {
         // Limitar a altura e largura da imagem
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d');
@@ -78,37 +88,31 @@ export class CadastroComponent implements OnInit{
         var numParts = Math.floor(resizedWidth / 48);
         var outputContainer = document.getElementById('outputContainer') as HTMLInputElement;
         outputContainer.innerHTML = ''; // Limpar o conteúdo anterior
-        
+        this.listImage = []
         for (var i = 0; i < numParts; i++) {
           var partCanvas = document.createElement('canvas');
           var partCtx = partCanvas.getContext('2d')!;
           partCanvas.width = 48;
           partCanvas.height = 96;
-          partCtx.drawImage(
-            canvas,
-            i * 48,
-            0,
-            48,
-            96,
-            0,
-            0,
-            48,
-            96
-          );
-          
+          partCtx.drawImage(canvas, i * 48, 0, 48, 96, 0, 0,  48, 96);
           var partImage = new Image();
-          partImage.src = partCanvas.toDataURL();
-          
-          
-          outputContainer.appendChild(partImage);
+          this.listImage.push(partCanvas.toDataURL())
+          partImage.src = this.listImage[i];   
+          if (i != 0)
+            outputContainer.appendChild(partImage);
+        }
+        if (this.listImage.length == 8) {
+          this.mostrarDescricaoEstagios = 5;
+          this.mostrarDescricao = 2;
+        }
+        else{
+          this.mostrarDescricaoEstagios = 0;
+          this.mostrarDescricao = 0;
         }
       };
     };
-
     reader.readAsDataURL(file!);
   }
-
-
 
   constructor(private formBuilder: FormBuilder) {}
 

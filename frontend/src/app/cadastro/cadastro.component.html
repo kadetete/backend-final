@@ -14,15 +14,14 @@
     <label for="imageInput">Imagem:</label>
     <input type="file" id="imageInput" (change)="handleImageUpload('imageInput')" accept="image/*">
 
-    <div id="outputContainer"></div>
+    <div id="outputContainer"></div><br><br>
+    <div id="outputC"></div>
 
-    <label for="estagios">Estágios:</label>
-    <select id="estagios" (change)="onChangeEstagios()" required #estagiosSelect>
-      <option value="1" >1</option>
+    <label for="colheitas">Colheitas:</label>
+    <select type="number" id="colheitas" (change)="onChangeDescricao()" required #descricaoSelect>
+      <option value="0"></option>
+      <option value="1">1</option>
       <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
     </select><br><br>
 
     <div *ngIf="mostrarDescricaoEstagios >= 1">
@@ -46,17 +45,11 @@
       <input type="number" id="descricao_Estagio_1=5" (change)="Editar_Descricao('Estagio_5')">
     </div>
 
-    <label for="colheitas">Colheitas:</label>
-    <select type="number" id="colheitas" (change)="onChangeColheitas()" required #colheitasSelect>
-      <option value="1">1</option>
-      <option value="2">2</option>
-    </select><br><br>
-
-    <div *ngIf="mostrarDescricaoColheitas >= 1">
+    <div *ngIf="mostrarDescricao >= 1">
       <label for="descricao_Estagio_1">Numero total de dias para colheita: </label>
       <input type="number" id="descricao_Colheita_1" (change)="Editar_Descricao('Colheita_1')">
     </div>
-    <div *ngIf="mostrarDescricaoColheitas >= 2">
+    <div *ngIf="mostrarDescricao >= 2">
       <label for="descricao_Colheita_2">Numero total de dias para a próxima colheita: </label>
       <input type="number" id="descricao_Colheita_2" (change)="Editar_Descricao('Colheita_2')">
     </div>
