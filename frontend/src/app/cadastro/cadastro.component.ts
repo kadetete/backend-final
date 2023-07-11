@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,18 @@ export class CadastroComponent implements OnInit{
   mostrarDescricaoEstagios: number = 0;
   mostrarDescricaoColheitas: number = 0;
 
+  
+  @ViewChild('estagiosSelect') estagiosSelect: any;
+  @ViewChild('colheitasSelect') colheitasSelect: any;
+  
+  // Adicione um método para lidar com a alteração do valor selecionado
+  onChangeEstagios() {
+    this.mostrarDescricaoEstagios = +this.estagiosSelect.nativeElement.value;
+  }
+  onChangeColheitas() {
+    this.mostrarDescricaoColheitas = +this.colheitasSelect.nativeElement.value;
+  }
+  
   Editar_Descricao(id: string) {
     var inputElement = document.getElementById(`descricao_${id}`) as HTMLInputElement;
     var valor = inputElement.valueAsNumber
@@ -28,6 +40,76 @@ export class CadastroComponent implements OnInit{
   enviarFormulario(){
     
   }
+  handleImageUpload(element: any) {
+    var inputElement = document.getElementById(element) as HTMLInputElement;
+    var file = inputElement.files?.[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function() {
+      var img = new Image();
+      img.src = reader.result as string;
+
+      img.onload = function() {
+        // Limitar a altura e largura da imagem
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        var maxImageWidth = 384;
+        var maxImageHeight = 96;
+        var resizedWidth, resizedHeight;
+        
+        if (img.width > maxImageWidth) {
+          resizedWidth = maxImageWidth;
+          resizedHeight = (img.height * maxImageWidth) / img.width;
+        } else {
+          resizedWidth = img.width;
+          resizedHeight = img.height;
+        }
+        
+        if (resizedHeight > maxImageHeight) {
+          resizedHeight = maxImageHeight;
+          resizedWidth = (img.width * maxImageHeight) / img.height;
+        }
+        
+        canvas.width = resizedWidth;
+        canvas.height = resizedHeight;
+        ctx!.drawImage(img, 0, 0, resizedWidth, resizedHeight);
+        
+        // Dividir a imagem em partes de 96x48
+        var numParts = Math.floor(resizedWidth / 48);
+        var outputContainer = document.getElementById('outputContainer') as HTMLInputElement;
+        outputContainer.innerHTML = ''; // Limpar o conteúdo anterior
+        
+        for (var i = 0; i < numParts; i++) {
+          var partCanvas = document.createElement('canvas');
+          var partCtx = partCanvas.getContext('2d')!;
+          partCanvas.width = 48;
+          partCanvas.height = 96;
+          partCtx.drawImage(
+            canvas,
+            i * 48,
+            0,
+            48,
+            96,
+            0,
+            0,
+            48,
+            96
+          );
+          
+          var partImage = new Image();
+          partImage.src = partCanvas.toDataURL();
+          
+          
+          outputContainer.appendChild(partImage);
+        }
+      };
+    };
+
+    reader.readAsDataURL(file!);
+  }
+
+
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
