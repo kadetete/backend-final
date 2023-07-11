@@ -1,1 +1,65 @@
-<p>cadastro works!</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulário de Upload de Imagem</title>
+  <script>
+  </script>
+</head>
+<body>
+  <h2>Cadastro de Lavouras</h2>
+  <form [formGroup]="formularioCadastro">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" formControlName="Nome"><br><br>
+    <label for="imagem">Imagem:</label>
+    <input type="file" id="imagem" required><br><br>
+    <label for="estagios">Estágios:</label>
+    <select id="estagios" [(ngModel)]="mostrarDescricaoEstagios" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select><br><br>
+
+    <div *ngIf="mostrarDescricaoEstagios >= 1">
+      <label for="descricao_Estagio_1">Numero de dias do 1° estágio: </label>
+      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao(Estagio_1)">
+    </div>
+    <div *ngIf="mostrarDescricaoEstagios >= 2">
+      <label for="descricao_Estagio_2">Numero de dias do 2° estágio: </label>
+      <input type="number" id="descricao_Estagio_2" (change)="Editar_Descricao(Estagio_2)">
+    </div>
+    <div *ngIf="mostrarDescricaoEstagios >= 3">
+      <label for="descricao_Estagio_3">Numero de dias do 3° estágio: </label>
+      <input type="number" id="descricao_Estagio_3" (change)="Editar_Descricao(Estagio_3)">
+    </div>
+    <div *ngIf="mostrarDescricaoEstagios >= 4">
+      <label for="descricao_Estagio_4">Numero de dias do 4° estágio: </label>
+      <input type="number" id="descricao_Estagio_4" (change)="Editar_Descricao(Estagio_4)">
+    </div>
+    <div *ngIf="mostrarDescricaoEstagios >= 5">
+      <label for="descricao_Estagio_5">Numero de dias do 5° estágio: </label>
+      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao(Estagio_1)">
+    </div>
+
+    <label for="colheitas">Colheitas:</label>
+    <select id="colheitas" [(ngModel)]="mostrarDescricaoColheitas" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select><br><br>
+
+    <div *ngIf="mostrarDescricaoColheitas >= 1">
+      <label for="descricao_Estagio_1">Numero total de dias para colheita: </label>
+      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao(Colheita_1)">
+    </div>
+    <div *ngIf="mostrarDescricaoColheitas >= 2">
+      <label for="descricao_Colheita_2">Numero total de dias para a próxima colheita: </label>
+      <input type="number" id="descricao_Colheita_2" (change)="Editar_Descricao(Colheita_2)">
+    </div>
+
+    <input type="button" value="Enviar" (click)="enviarFormulario()">
+  </form>
+</body>
+</html>
+    
+    

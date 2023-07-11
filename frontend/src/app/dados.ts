@@ -1,5 +1,5 @@
 export interface Dados {
-
+    
     IdCrescimento: any;
     Nome: any;
     Estagio_1_imagem: any;
