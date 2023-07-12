@@ -25,8 +25,10 @@ export class CadastroComponent implements OnInit{
         this.mostrarDescricaoEstagios = 0;
         this.mostrarDescricao = 0;
       }
-      this.mostrarDescricaoEstagios = this.listImage.length -1 -this.descricaoSelect.nativeElement.value;
-      this.mostrarDescricao = +this.descricaoSelect.nativeElement.value;
+      else{
+        this.mostrarDescricaoEstagios = this.listImage.length -1 -this.descricaoSelect.nativeElement.value;
+        this.mostrarDescricao = +this.descricaoSelect.nativeElement.value;
+      }
       for (var i = 1; i <= 7; i++) {
         var outputImagem = document.getElementById(`imagem_${i}`) as HTMLInputElement;
         if (i < (this.listImage.length  - this.mostrarDescricao)) {
