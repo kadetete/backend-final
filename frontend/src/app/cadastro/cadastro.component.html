@@ -24,10 +24,10 @@
       <option value="2">2</option>
     </select><br>
 
-    <fieldset>
+    <fieldset id="fieldsetPromocional">
       <legend>Imagem:</legend>
       <article class="img_des_container">
-        <section class="des_container">
+        <section [ngClass]="mostrarDescricaoEstagios >= 1 ? 'des_container' : 'des_container-hidden'">
           <img id="imagem_1" class="imagem-container">
           <div *ngIf="mostrarDescricaoEstagios >= 1" class="ng-untouched">
             <label for="descricao_Estagio_1">Numero de dias do 1° estágio: </label>
@@ -35,7 +35,7 @@
           </div>
         </section>
 
-        <section class="des_container">
+        <section [ngClass]="mostrarDescricaoEstagios >= 2 ? 'des_container' : 'des_container-hidden'">
           <img id="imagem_2"  class="imagem-container">
           <div *ngIf="mostrarDescricaoEstagios >= 2" class="ng-untouched">
             <label for="descricao_Estagio_2">Numero de dias do 2° estágio: </label>
@@ -43,7 +43,7 @@
           </div>
         </section>
 
-        <section class="des_container">
+        <section [ngClass]="mostrarDescricaoEstagios >= 3 ? 'des_container' : 'des_container-hidden'">
           <img id="imagem_3" class="imagem-container">
           <div *ngIf="mostrarDescricaoEstagios >= 3" class="ng-untouched">
             <label for="descricao_Estagio_3">Numero de dias do 3° estágio: </label>
@@ -51,7 +51,7 @@
           </div>
         </section>
         
-        <section class="des_container">
+        <section [ngClass]="mostrarDescricaoEstagios >= 4 ? 'des_container' : 'des_container-hidden'">
           <img id="imagem_4" class="imagem-container">
           <div *ngIf="mostrarDescricaoEstagios >= 4" class="ng-untouched">
             <label for="descricao_Estagio_4">Numero de dias do 4° estágio: </label>
@@ -59,7 +59,7 @@
           </div>
         </section>
         
-        <section class="des_container">
+        <section [ngClass]="mostrarDescricaoEstagios >= 5 ? 'des_container' : 'des_container-hidden'">
           <img id="imagem_5" class="imagem-container">
           <div *ngIf="mostrarDescricaoEstagios >= 5" class="ng-untouched">
             <label for="descricao_Estagio_5">Numero de dias do 5° estágio: </label>
@@ -67,7 +67,7 @@
           </div>
         </section>
 
-        <section class="des_container">
+        <section [ngClass]="mostrarDescricao >= 1 ? 'des_container' : 'des_container-hidden'">
           <img id="imagem_6" class="imagem-container">
           <div *ngIf="mostrarDescricao >= 1" class="ng-untouched">
             <label for="descricao_Estagio_1">Numero total de dias para colheita: </label>
@@ -75,7 +75,7 @@
           </div>
         </section>
         
-        <section class="des_container">
+        <section [ngClass]="mostrarDescricao >= 2 ? 'des_container' : 'des_container-hidden'">
           <img id="imagem_7" class="imagem-container">
           <div *ngIf="mostrarDescricao >= 2" class="ng-untouched">
             <label for="descricao_Colheita_2">Numero total de dias para a próxima colheita: </label>

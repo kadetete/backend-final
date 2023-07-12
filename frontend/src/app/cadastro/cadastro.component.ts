@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,7 @@ export class CadastroComponent implements OnInit{
   
   @ViewChild('estagiosSelect') estagiosSelect: any;
   @ViewChild('descricaoSelect') descricaoSelect: any;
+
   
   // Adicione um método para lidar com a alteração do valor selecionado
 
@@ -121,6 +122,7 @@ export class CadastroComponent implements OnInit{
         if (this.listImage.length == 8) {
           this.mostrarDescricaoEstagios = 5;
           this.mostrarDescricao = 2;
+          this.descricaoSelect.nativeElement.value = 2
           for (var y = 1; y <= 7; y++) {
             var outputImagem = document.getElementById(`imagem_${y}`) as HTMLInputElement;
             outputImagem.src = this.listImage[y];
@@ -129,6 +131,7 @@ export class CadastroComponent implements OnInit{
         else{
           this.mostrarDescricaoEstagios = 0;
           this.mostrarDescricao = 0;
+          this.descricaoSelect.nativeElement.value = 0
           for (var y = 1; y <= 7; y++) {
             var outputImagem = document.getElementById(`imagem_${y}`) as HTMLInputElement;
             outputImagem.removeAttribute('src');
@@ -139,7 +142,9 @@ export class CadastroComponent implements OnInit{
     reader.readAsDataURL(file!);
   }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+              private elementRef: ElementRef, 
+              private renderer: Renderer2) {}
 
   ngOnInit() {
     this.formularioCadastro = this.formBuilder.group({
@@ -161,4 +166,11 @@ export class CadastroComponent implements OnInit{
       Colheita_2_descricao: [null]
     });
   }
+  ngAfterViewInit() {
+    const desContainerElements = this.elementRef.nativeElement.querySelectorAll('.des_container');
+    const fieldsetWidth = desContainerElements.length * 256;
+  
+    this.renderer.setStyle(this.elementRef.nativeElement.querySelector('#fieldsetPromocional'), 'width', `${(desContainerElements.length == 0 ? 256: fieldsetWidth)}px`);
+  }
+  
 }
