@@ -22,37 +22,68 @@
       <option value="0"></option>
       <option value="1">1</option>
       <option value="2">2</option>
-    </select><br><br>
+    </select><br>
 
-    <div *ngIf="mostrarDescricaoEstagios >= 1">
-      <label for="descricao_Estagio_1">Numero de dias do 1° estágio: </label>
-      <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao('Estagio_1')">
-    </div>
-    <div *ngIf="mostrarDescricaoEstagios >= 2">
-      <label for="descricao_Estagio_2">Numero de dias do 2° estágio: </label>
-      <input type="number" id="descricao_Estagio_2" (change)="Editar_Descricao('Estagio_2')">
-    </div>
-    <div *ngIf="mostrarDescricaoEstagios >= 3">
-      <label for="descricao_Estagio_3">Numero de dias do 3° estágio: </label>
-      <input type="number" id="descricao_Estagio_3" (change)="Editar_Descricao('Estagio_3')">
-    </div>
-    <div *ngIf="mostrarDescricaoEstagios >= 4">
-      <label for="descricao_Estagio_4">Numero de dias do 4° estágio: </label>
-      <input type="number" id="descricao_Estagio_4" (change)="Editar_Descricao('Estagio_4')">
-    </div>
-    <div *ngIf="mostrarDescricaoEstagios >= 5">
-      <label for="descricao_Estagio_5">Numero de dias do 5° estágio: </label>
-      <input type="number" id="descricao_Estagio_1=5" (change)="Editar_Descricao('Estagio_5')">
-    </div>
+    <fieldset>
+      <legend>Imagem:</legend>
+      <article class="img_des_container">
+        <section class="des_container">
+          <img id="imagem_1" class="imagem-container">
+          <div *ngIf="mostrarDescricaoEstagios >= 1" class="ng-untouched">
+            <label for="descricao_Estagio_1">Numero de dias do 1° estágio: </label>
+            <input type="number" id="descricao_Estagio_1" (change)="Editar_Descricao('Estagio_1')">
+          </div>
+        </section>
 
-    <div *ngIf="mostrarDescricao >= 1">
-      <label for="descricao_Estagio_1">Numero total de dias para colheita: </label>
-      <input type="number" id="descricao_Colheita_1" (change)="Editar_Descricao('Colheita_1')">
-    </div>
-    <div *ngIf="mostrarDescricao >= 2">
-      <label for="descricao_Colheita_2">Numero total de dias para a próxima colheita: </label>
-      <input type="number" id="descricao_Colheita_2" (change)="Editar_Descricao('Colheita_2')">
-    </div>
+        <section class="des_container">
+          <img id="imagem_2"  class="imagem-container">
+          <div *ngIf="mostrarDescricaoEstagios >= 2" class="ng-untouched">
+            <label for="descricao_Estagio_2">Numero de dias do 2° estágio: </label>
+            <input type="number" id="descricao_Estagio_2" (change)="Editar_Descricao('Estagio_2')">
+          </div>
+        </section>
+
+        <section class="des_container">
+          <img id="imagem_3" class="imagem-container">
+          <div *ngIf="mostrarDescricaoEstagios >= 3" class="ng-untouched">
+            <label for="descricao_Estagio_3">Numero de dias do 3° estágio: </label>
+            <input type="number" id="descricao_Estagio_3" (change)="Editar_Descricao('Estagio_3')">
+          </div>
+        </section>
+        
+        <section class="des_container">
+          <img id="imagem_4" class="imagem-container">
+          <div *ngIf="mostrarDescricaoEstagios >= 4" class="ng-untouched">
+            <label for="descricao_Estagio_4">Numero de dias do 4° estágio: </label>
+            <input type="number" id="descricao_Estagio_4" (change)="Editar_Descricao('Estagio_4')">
+          </div>
+        </section>
+        
+        <section class="des_container">
+          <img id="imagem_5" class="imagem-container">
+          <div *ngIf="mostrarDescricaoEstagios >= 5" class="ng-untouched">
+            <label for="descricao_Estagio_5">Numero de dias do 5° estágio: </label>
+            <input type="number" id="descricao_Estagio_1=5" (change)="Editar_Descricao('Estagio_5')">
+          </div>
+        </section>
+
+        <section class="des_container">
+          <img id="imagem_6" class="imagem-container">
+          <div *ngIf="mostrarDescricao >= 1" class="ng-untouched">
+            <label for="descricao_Estagio_1">Numero total de dias para colheita: </label>
+            <input type="number" id="descricao_Colheita_1" (change)="Editar_Descricao('Colheita_1')">
+          </div>
+        </section>
+        
+        <section class="des_container">
+          <img id="imagem_7" class="imagem-container">
+          <div *ngIf="mostrarDescricao >= 2" class="ng-untouched">
+            <label for="descricao_Colheita_2">Numero total de dias para a próxima colheita: </label>
+            <input type="number" id="descricao_Colheita_2" (change)="Editar_Descricao('Colheita_2')">
+          </div>
+        </section>
+      </article>
+    </fieldset>
 
     <input type="button" value="Enviar" (click)="enviarFormulario()">
   </form>

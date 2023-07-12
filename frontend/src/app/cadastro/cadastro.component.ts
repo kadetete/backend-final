@@ -26,8 +26,24 @@ export class CadastroComponent implements OnInit{
       }
       this.mostrarDescricaoEstagios = this.listImage.length -1 -this.descricaoSelect.nativeElement.value;
       this.mostrarDescricao = +this.descricaoSelect.nativeElement.value;
+      for (var i = 1; i <= 7; i++) {
+        var outputImagem = document.getElementById(`imagem_${i}`) as HTMLInputElement;
+        if (i < (this.listImage.length  - this.mostrarDescricao)) {
+          outputImagem.src = this.listImage[i];
+        }
+        else {
+          outputImagem.removeAttribute('src');
+        }
+        if (i == 6){
+          outputImagem.src = this.listImage[this.listImage.length - (this.mostrarDescricao == 1 ? 1 : 2)];
+        }
+        else if (i == 7 && this.mostrarDescricao == 2){
+          outputImagem.src = this.listImage[this.listImage.length -1]
+        }
+      }
     }
   }
+
   /*var partImage = new Image();
   this.listImage.push(partCanvas.toDataURL())
   partImage.src = this.listImage[i-1];   
@@ -53,6 +69,8 @@ export class CadastroComponent implements OnInit{
   handleImageUpload(element: any) {
     var inputElement = document.getElementById(element) as HTMLInputElement;
     var file = inputElement.files?.[0];
+    var inputNome = document.getElementById(`nome`) as HTMLInputElement;
+    inputNome.value = file?.name.split('.')[0]!;
     var reader = new FileReader();
 
     reader.onloadend = () => {
@@ -98,16 +116,23 @@ export class CadastroComponent implements OnInit{
           var partImage = new Image();
           this.listImage.push(partCanvas.toDataURL())
           partImage.src = this.listImage[i];   
-          if (i != 0)
-            outputContainer.appendChild(partImage);
+          outputContainer.appendChild(partImage);
         }
         if (this.listImage.length == 8) {
           this.mostrarDescricaoEstagios = 5;
           this.mostrarDescricao = 2;
+          for (var y = 1; y <= 7; y++) {
+            var outputImagem = document.getElementById(`imagem_${y}`) as HTMLInputElement;
+            outputImagem.src = this.listImage[y];
+          }
         }
         else{
           this.mostrarDescricaoEstagios = 0;
           this.mostrarDescricao = 0;
+          for (var y = 1; y <= 7; y++) {
+            var outputImagem = document.getElementById(`imagem_${y}`) as HTMLInputElement;
+            outputImagem.removeAttribute('src');
+          }
         }
       };
     };
