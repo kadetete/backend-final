@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { CommonModule } from '@angular/common';
+import { LavourasComponent } from './lavouras/lavouras.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroComponent
+    CadastroComponent,
+    LavourasComponent
   ],
   imports: [
     BrowserModule,
