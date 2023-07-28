@@ -104,6 +104,12 @@ router.delete('/:Nome_Cultivo', function(req, res, next) {
         if (erroSQL) {
             throw erroSQL;
         }
+
+        if (result.affectedRows > 0) {
+          res.status(200).json({message: 'Registro excluido com sucesso'});
+        } else {
+          res.status(400).json({message: 'Não foi possível excluir dados'});
+        }
     });
 });
 

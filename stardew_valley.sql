@@ -57,7 +57,7 @@ CREATE TABLE `mudas` (
   `Tempo_de_Crescimento` varchar(200) NOT NULL,
   `Estacao` varchar(50) NOT NULL,
   `Preco_de_venda_Muda` bigint NOT NULL,
-  `Armazém_do_Pierre` bigint DEFAULT NULL,
+  `Armazem_do_Pierre` bigint DEFAULT NULL,
   `Mercado_Joja` bigint DEFAULT NULL,
   `Carrinho_de_Viagem` varchar(50) DEFAULT NULL,
   `desc_muda_1` varchar(500),
