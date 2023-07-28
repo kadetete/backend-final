@@ -24,6 +24,16 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/:Nome', function(req, res, next) {
+  Nome = req.params.Nome;
+  con.query('SELECT * FROM tbcrescimentolavouras WHERE Nome = ?', [Nome], function(erroSQL, result, fields) {
+    if (erroSQL) {
+      throw erroSQL;
+    }
+    res.status(200).json({message: result});
+  });
+});
+
 router.post('/', function(req, res, next) {
   Nome = req.body.Nome;
   Imagem = req.body.Imagem;
@@ -52,9 +62,8 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.put('/:IdCrescimento', function(req, res, next) {
-  IdCrescimento = req.params.IdCrescimento;
-  Nome = req.body.Nome;
+router.put('/:Nome', function(req, res, next) {
+  Nome = req.params.Nome;
   Imagem = req.body.Imagem;
   Estagio_1_descricao = req.body.Estagio_1_descricao;
   Estagio_2_descricao = req.body.Estagio_2_descricao;
@@ -77,8 +86,8 @@ router.put('/:IdCrescimento', function(req, res, next) {
   Colheita_2_descricao = ?,
   IdCultivo = ?,
   IdMuda = ?
-  WHERE IdCrescimento = ?`
-  con.query(sql, [Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda, IdCrescimento], function(erroSQL, result, fields) {
+  WHERE Nome = ?`
+  con.query(sql, [Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda, Nome], function(erroSQL, result, fields) {
     if (erroSQL) {
       throw erroSQL;
     }
@@ -92,10 +101,10 @@ router.put('/:IdCrescimento', function(req, res, next) {
   });
 });
 
-router.delete('/:IdCrescimento', function(req, res, next) {
-  IdCrescimento = req.params.IdCrescimento;
-  sql = 'DELETE FROM tbcrescimentolavouras WHERE IdCrescimento = ?'
-  con.query(sql, [IdCrescimento], function(erroSQL, result, fields) {
+router.delete('/:Nome', function(req, res, next) {
+  Nome = req.params.Nome;
+  sql = 'DELETE FROM tbcrescimentolavouras WHERE Nome = ?'
+  con.query(sql, [Nome], function(erroSQL, result, fields) {
     if (erroSQL) {
       throw erroSQL;
     }
