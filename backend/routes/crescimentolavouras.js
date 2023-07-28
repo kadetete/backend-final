@@ -24,16 +24,98 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/:Nome', function(req, res, next) {
+  Nome = req.params.Nome;
+  con.query('SELECT * FROM tbcrescimentolavouras WHERE Nome = ?', [Nome], function(erroSQL, result, fields) {
+    if (erroSQL) {
+      throw erroSQL;
+    }
+    res.status(200).json({message: result});
+  });
+});
+
 router.post('/', function(req, res, next) {
+  Nome = req.body.Nome;
+  Imagem = req.body.Imagem;
+  Estagio_1_descricao = req.body.Estagio_1_descricao;
+  Estagio_2_descricao = req.body.Estagio_2_descricao;
+  Estagio_3_descricao = req.body.Estagio_3_descricao;
+  Estagio_4_descricao = req.body.Estagio_4_descricao;
+  Estagio_5_descricao = req.body.Estagio_5_descricao;
+  Colheita_1_descricao = req.body.Colheita_1_descricao;
+  Colheita_2_descricao = req.body.Colheita_2_descricao;
+  IdCultivo = req.body.IdCultivo;
+  IdMuda = req.body.IdMuda;
+  sql = `INSERT INTO 
+  tbcrescimentolavouras(Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda) 
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  con.query(sql, [Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda], function(erroSQL, result, fields) {
+    if(erroSQL) {
+      throw erroSQL;
+    }
 
+    if (result.affectedRows > 0) {
+      res.status(200).json({message: 'Registro inserido com sucesso'});
+    } else {
+      res.status(400).json({message: 'Não foi possível inserir dados'});
+    }
+  });
 });
 
-router.put('/', function(req, res, next) {
+router.put('/:Nome', function(req, res, next) {
+  Nome = req.params.Nome;
+  Imagem = req.body.Imagem;
+  Estagio_1_descricao = req.body.Estagio_1_descricao;
+  Estagio_2_descricao = req.body.Estagio_2_descricao;
+  Estagio_3_descricao = req.body.Estagio_3_descricao;
+  Estagio_4_descricao = req.body.Estagio_4_descricao;
+  Estagio_5_descricao = req.body.Estagio_5_descricao;
+  Colheita_1_descricao = req.body.Colheita_1_descricao;
+  Colheita_2_descricao = req.body.Colheita_2_descricao;
+  IdCultivo = req.body.IdCultivo;
+  IdMuda = req.body.IdMuda;
+  sql = `UPDATE tbcrescimentolavouras SET 
+  Nome = ?,
+  Imagem = ?,
+  Estagio_1_descricao = ?,
+  Estagio_2_descricao = ?,
+  Estagio_3_descricao = ?,
+  Estagio_4_descricao = ?,
+  Estagio_5_descricao = ?,
+  Colheita_1_descricao = ?,
+  Colheita_2_descricao = ?,
+  IdCultivo = ?,
+  IdMuda = ?
+  WHERE Nome = ?`
+  con.query(sql, [Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda, Nome], function(erroSQL, result, fields) {
+    if (erroSQL) {
+      throw erroSQL;
+    }
+    
+    if (result.affectedRows > 0) {
+      res.status(200).json({message: 'Registro alterado com sucesso'});
+    } else {
+      res.status(400).json({message: 'Não foi possível alterar dados'});
+    }
 
+  });
 });
 
-router.delete('/', function(req, res, next) {
+router.delete('/:Nome', function(req, res, next) {
+  Nome = req.params.Nome;
+  sql = 'DELETE FROM tbcrescimentolavouras WHERE Nome = ?'
+  con.query(sql, [Nome], function(erroSQL, result, fields) {
+    if (erroSQL) {
+      throw erroSQL;
+    }
 
+    if (result.affectedRows > 0) {
+      res.status(200).send('Registro excluído com sucesso');
+  } else {
+      res.status(404).send('Não encontrado');
+  }
+  });
+  
 });
 
 module.exports = router;
