@@ -7,6 +7,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var lavourasRouter = require('./routes/crescimentolavouras');
 var cultivosRouter = require('./routes/cultivos');
+var mudasRouter = require('./routes/mudas');
 
 var app = express();
 app.use(cors());
@@ -19,5 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/lavouras', lavourasRouter);
 app.use('/cultivos', cultivosRouter);
+app.use('/mudas', mudasRouter);
+
 
 module.exports = app;
