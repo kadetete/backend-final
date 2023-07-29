@@ -1,7 +1,6 @@
 <div class="container">
     <h2>Login</h2>
 
-    <button pButton label="Fazer Cadastro" (click)="irCadastro()"></button>
     <table class="forms">
         <tr>
             <td><label htmlFor="login">Usuario:</label></td>
@@ -14,6 +13,9 @@
         <br>
         <td>
             <p-button label="Logar" styleClass="p-button-text" (click)="fazerLogin()"></p-button>
+        </td>
+        <td>
+            <button pButton label="Cadastro" (click)="irCadastro()" styleClass="p-button-text"></button>
         </td>
     </table>
 </div>

@@ -13,6 +13,7 @@ export class DetalhesComponent implements OnInit{
   mostrarDescricaoEstagios: number = 0;
   mostrarDescricao: number = 0;
   listImage: string[] = [];
+  IdCultivo = '';
   Nome_muda = '';
   Nome_cultivo = '';
   Imagem_muda = '';
@@ -94,11 +95,11 @@ export class DetalhesComponent implements OnInit{
               private activaRoute: ActivatedRoute,
               private dadoServico: DadosService) {}
 
-  ngOnInit() {
+  ngOnInit(): void{
     this.activaRoute.paramMap.subscribe({
       next: (rota: any) => {
-        this.Nome_cultivo = rota.params.Nome_cultivo;
-        this.dadoServico.getLavourasPeloNome(this.Nome_cultivo).subscribe({
+        this.IdCultivo = rota.params.IdCultivo;
+        this.dadoServico.getLavourasPeloID(this.IdCultivo).subscribe({
           next: (retorno: any) => {
             this.Nome_muda = retorno.Nome_muda;
             this.Nome_cultivo = retorno.Nome_cultivo;

@@ -28,6 +28,6 @@ export class LoginComponent {
   }
 
   irCadastro(): void {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/usuarionovo']);
   }
 }

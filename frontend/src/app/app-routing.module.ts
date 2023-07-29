@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent, canActivate: [AuthGuard] },
   { path: '', component: LavourasComponent, canActivate: [AuthGuard]},
   {path: 'detalhes/:Nome_cultivo', component: DetalhesComponent, canActivate: [AuthGuard]},
-  {path: 'cadastro', component: CadastroComponent},
+  {path: 'usuarionovo', component: CadastroComponent},
   {path: 'login', component: LoginComponent }
 ];
 

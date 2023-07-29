@@ -48,6 +48,7 @@ export class CadastroComponent implements OnInit{
     this.mostrarDescricaoEstagios = 0;
     this.mostrarDescricao = 0;
     this.formularioCadastro = this.formBuilder.group({ });
+    
   }
 
   // Adicione um método para lidar com a alteração do valor selecionado
@@ -57,7 +58,7 @@ export class CadastroComponent implements OnInit{
     if (inputElement.id.includes('Estagio'))
       var valorManipulado = valor + (valor == 1 ? " Dia" : " Dias")
     else
-      if (this.mostrarDescricao == 2)	
+      if (this.mostrarDescricao == 2 && inputElement.id.includes('Colheita_2'))	
         var valorManipulado = (valor == 1 ? "Continua a produzir todo dia." : "Continua a produzir a cada " + valor + "dias");
       else
         var valorManipulado = "Total:" + valor + " Dias";
@@ -99,21 +100,18 @@ export class CadastroComponent implements OnInit{
   
   outputContainer.appendChild(partImage);*/
   
-  enviarFormulario(): void{
-    
-    this.dadoService.addLavouras(this.dado).subscribe({
-      error: (erro: any) => console.log(erro)
-    });
-      this.router.navigate(['/']);
-  }
-  
   handleImageUpload(element: any) {
     var inputElement = document.getElementById(element) as HTMLInputElement;
     var file = inputElement.files?.[0];
-    var inputNome = document.getElementById(`nome`) as HTMLInputElement;
-    inputNome.value = file?.name.split('.')[0]!;
     var reader = new FileReader();
     var tamanho = this.listImage.length
+    var outputImagem1 = document.getElementById(`imagem_${1}`) as HTMLInputElement;
+    var outputImagem2 = document.getElementById(`imagem_${2}`) as HTMLInputElement;
+    var outputImagem3 = document.getElementById(`imagem_${3}`) as HTMLInputElement;
+    var outputImagem4 = document.getElementById(`imagem_${4}`) as HTMLInputElement;
+    var outputImagem5 = document.getElementById(`imagem_${5}`) as HTMLInputElement;
+    var outputImagem6 = document.getElementById(`imagem_${6}`) as HTMLInputElement;
+    var outputImagem7 = document.getElementById(`imagem_${7}`) as HTMLInputElement;
 
     reader.onloadend = () => {
       var img = new Image();
@@ -161,24 +159,6 @@ export class CadastroComponent implements OnInit{
           partImage.src = this.listImage[i];   
           outputContainer.appendChild(partImage);
         }
-        switch (this.mostrarDescricao) {
-          case 1:
-            this.dado.Colheita_1_descricao = this.listImage[-1]
-            for (var y = 1; y <= tamanho - 2; y++) {
-              (this.dado as any)['Imagem_estagios_'+y] = this.listImage[y];
-            }
-            break;
-          case 2:
-            this.dado.Colheita_1_descricao = this.listImage[-2]
-            this.dado.Colheita_2_descricao = this.listImage[-1]
-            for (var y = 1; y <= tamanho - 3; y++) {
-              (this.dado as any)['Imagem_estagios_'+y] = this.listImage[y];
-            }
-            break;
-          default:
-            break
-        }
-        this.dado.Imagem_estagios_1 = this.listImage[1];
         if (this.listImage.length == 8) {
           this.mostrarDescricaoEstagios = 5;
           this.mostrarDescricao = 2;
@@ -197,6 +177,28 @@ export class CadastroComponent implements OnInit{
             outputImagem.removeAttribute('src');
           }
         }
+        tamanho = this.listImage.length
+        switch (this.mostrarDescricao) {
+          case 1:
+            this.dado.Imagem_estagios_1 = tamanho - 1 >= 1 ? outputImagem1.src : ""; 
+            this.dado.Imagem_estagios_2 = tamanho - 1 >= 2 ? outputImagem2.src : ""; 
+            this.dado.Imagem_estagios_3 = tamanho - 1 >= 3 ? outputImagem3.src : ""; 
+            this.dado.Imagem_estagios_4 = tamanho - 1 >= 4 ? outputImagem4.src : ""; 
+            this.dado.Imagem_estagios_5 = tamanho - 1 >= 5 ? outputImagem5.src : ""; 
+            this.dado.Imagem_colheita_1 = outputImagem7.src; 
+            break;
+          case 2:
+            this.dado.Imagem_estagios_1 = tamanho - 2 >= 1 ? outputImagem1.src : ""; 
+            this.dado.Imagem_estagios_2 = tamanho - 2 >= 2 ? outputImagem2.src : ""; 
+            this.dado.Imagem_estagios_3 = tamanho - 2 >= 3 ? outputImagem3.src : ""; 
+            this.dado.Imagem_estagios_4 = tamanho - 2 >= 4 ? outputImagem4.src : ""; 
+            this.dado.Imagem_estagios_5 = tamanho - 2 >= 5 ? outputImagem5.src : ""; 
+            this.dado.Imagem_colheita_1 = outputImagem6.src; 
+            this.dado.Imagem_colheita_2 = outputImagem7.src; 
+            break;
+          default:
+            break
+        }
       };
     };
     reader.readAsDataURL(file!);
@@ -207,6 +209,14 @@ export class CadastroComponent implements OnInit{
               private renderer: Renderer2,
               private dadoService: DadosService,
               private router: Router) {}
+  
+  enviarFormulario(): void{
+
+    this.dadoService.addLavouras(this.dado).subscribe({
+      error: (erro: any) => console.log(erro)
+    });
+      this.router.navigate(['/']);
+  }
 
   ngAfterViewInit() {
     const desContainerElements = this.elementRef.nativeElement.querySelectorAll('.des_container');

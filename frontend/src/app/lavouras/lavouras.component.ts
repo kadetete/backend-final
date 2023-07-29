@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { DadosService } from '../dados.service';
 import { Router } from '@angular/router';
-import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lavouras',
@@ -14,6 +13,10 @@ export class LavourasComponent implements OnInit{
 
   constructor(private dadosService: DadosService, private router: Router) {}
 
+  ngOnInit(): void {
+    this.onListar();
+  }
+
   onListar(): void {
     this.dadosService.getLavouras().subscribe({
       next: (resultado: any) => {(this.dadosLavouras = resultado), console.log(resultado)},
@@ -22,15 +25,12 @@ export class LavourasComponent implements OnInit{
     });
   }
 
-  ngOnInit(): void {
-    this.onListar();
-  }
 
   onSelecionar(): void {
-    this.router.navigate([`/detalhes/${this.dadoSelecionado.Nome_cultivo}`]);
+    this.router.navigate([`/detalhes/${this.dadoSelecionado.IdCultivo}`])
   }
 
   irCadastro(): void {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/usuarionovo']);
   }
 }

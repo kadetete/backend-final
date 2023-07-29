@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 // primeng
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 import { UsuarionovoComponent } from './usuarionovo/usuarionovo.component'
 
 @NgModule({
@@ -34,7 +35,8 @@ import { UsuarionovoComponent } from './usuarionovo/usuarionovo.component'
     TableModule,
     HttpClientModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule
   ],
   providers: [DadosService],
   bootstrap: [AppComponent]

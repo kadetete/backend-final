@@ -21,5 +21,5 @@ export interface Dados {
     Estagio_4_descricao: any,
     Estagio_5_descricao: any,
     Colheita_1_descricao: any,
-    Colheita_2_descricao: any;
+    Colheita_2_descricao: any,
 }

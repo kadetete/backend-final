@@ -20,17 +20,17 @@ router.get('/', function(req, res, next) {
     if (erroSQL) {
       throw erroSQL;
     }
-    res.status(200).json({message: result});
+    res.status(200).json(result);
   });
 });
 
-router.get('/:Nome_cultivo', function(req, res, next) {
-  Nome_cultivo = req.params.Nome_cultivo
-  con.query('SELECT * FROM tbcrescimentolavouras WHERE Nome_cultivo = ?', [Nome_cultivo],function(erroSQL, result, fields) {
+router.get('/:IdCultivo', function(req, res, next) {
+  Nome_cultivo = req.params.IdCultivo
+  con.query('SELECT * FROM tbcrescimentolavouras WHERE IdCultivo = ?', [IdCultivo],function(erroSQL, result, fields) {
     if (erroSQL) {
       throw erroSQL;
     }
-    res.status(200).json({message: result});
+    res.status(200).send(result);
   });
 });
 
