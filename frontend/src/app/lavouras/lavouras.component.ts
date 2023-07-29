@@ -29,4 +29,8 @@ export class LavourasComponent implements OnInit{
   onSelecionar(): void {
     this.router.navigate([`/detalhes/${this.dadoSelecionado.Nome_cultivo}`]);
   }
+
+  irCadastro(): void {
+    this.router.navigate(['/cadastro']);
+  }
 }

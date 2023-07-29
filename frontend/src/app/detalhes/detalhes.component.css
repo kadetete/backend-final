@@ -1,0 +1,22 @@
+.img_des_container {
+    display: flex;
+    height:128px;
+  }
+.des_container-hidden {
+  display: none;
+}
+.des_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+  }
+
+  .des_container img {
+    align-items: center;
+    height:128px;
+}
+#fieldsetPromocional {
+  height: 192px; /* Defina a altura máxima desejada */
+}

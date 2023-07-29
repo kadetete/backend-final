@@ -14,7 +14,8 @@ import { LoginComponent } from './login/login.component';
 
 // primeng
 import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button'
+import { ButtonModule } from 'primeng/button';
+import { UsuarionovoComponent } from './usuarionovo/usuarionovo.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ButtonModule } from 'primeng/button'
     CadastroComponent,
     LavourasComponent,
     DetalhesComponent,
-    LoginComponent
+    LoginComponent,
+    UsuarionovoComponent
   ],
   imports: [
     BrowserModule,

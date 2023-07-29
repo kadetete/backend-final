@@ -26,4 +26,8 @@ export class LoginComponent {
       }
     )
   }
+
+  irCadastro(): void {
+    this.router.navigate(['/cadastro']);
+  }
 }

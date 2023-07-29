@@ -47,7 +47,7 @@ export class CadastroComponent implements OnInit{
   ngOnInit(): void {
     this.mostrarDescricaoEstagios = 0;
     this.mostrarDescricao = 0;
-    this.formularioCadastro = this.formBuilder.group({});
+    this.formularioCadastro = this.formBuilder.group({ });
   }
 
   // Adicione um método para lidar com a alteração do valor selecionado

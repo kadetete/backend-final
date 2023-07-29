@@ -43,4 +43,8 @@ export class LoginService {
     this.logout();
     return false;
   }
+
+  cadastro(user: string, pass: string): Observable<any> {
+    return this.http.post('http/localhost:3000/novo', {login: user, senha: pass})
+  }
 }
