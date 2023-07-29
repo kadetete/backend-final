@@ -24,9 +24,9 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/:Nome', function(req, res, next) {
-  Nome = req.params.Nome;
-  con.query('SELECT * FROM tbcrescimentolavouras WHERE Nome = ?', [Nome], function(erroSQL, result, fields) {
+router.get('/:Nome_cultivo', function(req, res, next) {
+  Nome_cultivo = req.params.Nome_cultivo
+  con.query('SELECT * FROM tbcrescimentolavouras WHERE Nome_cultivo = ?', [Nome_cultivo],function(erroSQL, result, fields) {
     if (erroSQL) {
       throw erroSQL;
     }
@@ -35,8 +35,20 @@ router.get('/:Nome', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  Nome = req.body.Nome;
-  Imagem = req.body.Imagem;
+  Nome_muda = req.body.Nome_muda;
+  Nome_cultivo = req.body.Nome_cultivo;
+  desc_cultivo_1 = req.body.desc_cultivo_1;
+  desc_cultivo_2 = req.body.desc_cultivo_2;
+  Preco_de_venda_cultivo = req.body.Preco_de_venda_cultivo;
+  Imagem_muda = req.body.Imagem_muda;
+  Imagem_cultivo = req.body.Imagem_cultivo;
+  Imagem_estagios_1 = req.body.Imagem_estagios_1;
+  Imagem_estagios_2 = req.body.Imagem_estagios_2;
+  Imagem_estagios_3 = req.body.Imagem_estagios_3;
+  Imagem_estagios_4 = req.body.Imagem_estagios_4;
+  Imagem_estagios_5 = req.body.Imagem_estagios_5;
+  Imagem_colheita_1 = req.body.Imagem_colheita_1;
+  Imagem_colheita_2 = req.body.Imagem_colheita_2;
   Estagio_1_descricao = req.body.Estagio_1_descricao;
   Estagio_2_descricao = req.body.Estagio_2_descricao;
   Estagio_3_descricao = req.body.Estagio_3_descricao;
@@ -44,12 +56,38 @@ router.post('/', function(req, res, next) {
   Estagio_5_descricao = req.body.Estagio_5_descricao;
   Colheita_1_descricao = req.body.Colheita_1_descricao;
   Colheita_2_descricao = req.body.Colheita_2_descricao;
-  IdCultivo = req.body.IdCultivo;
-  IdMuda = req.body.IdMuda;
-  sql = `INSERT INTO 
-  tbcrescimentolavouras(Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda) 
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-  con.query(sql, [Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda], function(erroSQL, result, fields) {
+  Estacao = req.body.Estacao;
+  Energia = req.body.Energia;
+  sql = `INSERT INTO
+  tbcrescimentolavouras(
+  Nome_muda,
+  Nome_cultivo,
+  desc_cultivo_1,
+  desc_cultivo_2,
+  Preco_de_venda_cultivo,
+  Imagem_muda,
+  Imagem_cultivo,
+  Imagem_estagios_1,
+  Imagem_estagios_2,
+  Imagem_estagios_3,
+  Imagem_estagios_4,
+  Imagem_estagios_5,
+  Imagem_colheita_1,
+  Imagem_colheita_2,
+  Estagio_1_descricao,
+  Estagio_2_descricao,
+  Estagio_3_descricao,
+  Estagio_4_descricao,
+  Estagio_5_descricao,
+  Colheita_1_descricao,
+  Colheita_2_descricao,
+  Estacao,
+  Energia)
+  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+  con.query(sql, [Nome_muda, Nome_cultivo, desc_cultivo_1, desc_cultivo_2, Preco_de_venda_cultivo, 
+    Imagem_muda, Imagem_cultivo, Imagem_estagios_1, Imagem_estagios_2, Imagem_estagios_3, Imagem_estagios_4, Imagem_estagios_5, Imagem_colheita_1, Imagem_colheita_2, 
+    Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, Estacao, Energia
+  ], function(erroSQL, result, fields) {
     if(erroSQL) {
       throw erroSQL;
     }
@@ -62,9 +100,21 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.put('/:Nome', function(req, res, next) {
-  Nome = req.params.Nome;
-  Imagem = req.body.Imagem;
+router.put('/', function(req, res, next) {
+  Nome_muda = req.body.Nome_muda;
+  Nome_cultivo = req.body.Nome_cultivo;
+  desc_cultivo_1 = req.body.desc_cultivo_1;
+  desc_cultivo_2 = req.body.desc_cultivo_2;
+  Preco_de_venda_cultivo = req.body.Preco_de_venda_cultivo;
+  Imagem_muda = req.body.Imagem_muda;
+  Imagem_cultivo = req.body.Imagem_cultivo;
+  Imagem_estagios_1 = req.body.Imagem_estagios_1;
+  Imagem_estagios_2 = req.body.Imagem_estagios_2;
+  Imagem_estagios_3 = req.body.Imagem_estagios_3;
+  Imagem_estagios_4 = req.body.Imagem_estagios_4;
+  Imagem_estagios_5 = req.body.Imagem_estagios_5;
+  Imagem_colheita_1 = req.body.Imagem_colheita_1;
+  Imagem_colheita_2 = req.body.Imagem_colheita_2;
   Estagio_1_descricao = req.body.Estagio_1_descricao;
   Estagio_2_descricao = req.body.Estagio_2_descricao;
   Estagio_3_descricao = req.body.Estagio_3_descricao;
@@ -72,11 +122,24 @@ router.put('/:Nome', function(req, res, next) {
   Estagio_5_descricao = req.body.Estagio_5_descricao;
   Colheita_1_descricao = req.body.Colheita_1_descricao;
   Colheita_2_descricao = req.body.Colheita_2_descricao;
-  IdCultivo = req.body.IdCultivo;
-  IdMuda = req.body.IdMuda;
+  Estacao = req.body.Estacao;
+  Energia = req.body.Energia;
+
   sql = `UPDATE tbcrescimentolavouras SET 
-  Nome = ?,
-  Imagem = ?,
+  Nome_muda= ?,
+  Nome_cultivo= ?,
+  desc_cultivo_1= ?,
+  desc_cultivo_2= ?,
+  Preco_de_venda_cultivo= ?,
+  Imagem_muda= ?,
+  Imagem_cultivo= ?,
+  Imagem_estagios_1= ?,
+  Imagem_estagios_2= ?,
+  Imagem_estagios_3= ?,
+  Imagem_estagios_4= ?,
+  Imagem_estagios_5= ?,
+  Imagem_colheita_1= ?,
+  Imagem_colheita_2= ?,
   Estagio_1_descricao = ?,
   Estagio_2_descricao = ?,
   Estagio_3_descricao = ?,
@@ -84,10 +147,13 @@ router.put('/:Nome', function(req, res, next) {
   Estagio_5_descricao = ?,
   Colheita_1_descricao = ?,
   Colheita_2_descricao = ?,
-  IdCultivo = ?,
-  IdMuda = ?
-  WHERE Nome = ?`
-  con.query(sql, [Nome, Imagem, Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, IdCultivo, IdMuda, Nome], function(erroSQL, result, fields) {
+  Estacao = ?,
+  Energia = ?
+  WHERE Nome_cultivo = ?`
+  con.query(sql, [Nome_muda, Nome_cultivo, desc_cultivo_1, desc_cultivo_2, Preco_de_venda_cultivo, 
+    Imagem_muda, Imagem_cultivo, Imagem_estagios_1, Imagem_estagios_2, Imagem_estagios_3, Imagem_estagios_4, Imagem_estagios_5, Imagem_colheita_1, Imagem_colheita_2, 
+    Estagio_1_descricao, Estagio_2_descricao, Estagio_3_descricao, Estagio_4_descricao, Estagio_5_descricao, Colheita_1_descricao, Colheita_2_descricao, Estacao, Energia, Nome_cultivo
+  ], function(erroSQL, result, fields) {
     if (erroSQL) {
       throw erroSQL;
     }
@@ -101,10 +167,10 @@ router.put('/:Nome', function(req, res, next) {
   });
 });
 
-router.delete('/:Nome', function(req, res, next) {
-  Nome = req.params.Nome;
-  sql = 'DELETE FROM tbcrescimentolavouras WHERE Nome = ?'
-  con.query(sql, [Nome], function(erroSQL, result, fields) {
+router.delete('/:Nome_cultivo', function(req, res, next) {
+  Nome_cultivo = req.params.Nome_cultivo;
+  sql = 'DELETE FROM tbcrescimentolavouras WHERE Nome_cultivo = ?'
+  con.query(sql, [Nome_cultivo], function(erroSQL, result, fields) {
     if (erroSQL) {
       throw erroSQL;
     }

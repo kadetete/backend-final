@@ -1,20 +1,22 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Formulário de Upload de Imagem</title>
-  <script>
-  </script>
-</head>
-<body>
-  <h2>Lavouras</h2>
-    <div id="div_principal">
-        <img id="imagem_1" class="imagem-container">
-        <div>
-        <label for="descricao_Estagio_1">Numero de dias do 1° estágio: </label>
-        <input type="number" id="descricao_Estagio_1">
-        </div>
-    </div>
-</body>
-</html>
-  
+<h2>Lavouras</h2>
+<p-table [value]="dadosLavouras" [rows]="10" [paginator]="true" [showCurrentPageReport]="true"
+  currentPageReportTemplate="{first} a {last} de {totalRecords}" [rowsPerPageOptions]="[10, 20, 40]"
+  selectionMode="single" [(selection)]="dadoSelecionado" dataKey="Nome_cultivo"
+  (onRowSelect)="onSelecionar()">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="Nome_cultivo">Nome da lavoura <p-sortIcon field="Nome_cultivo"></p-sortIcon></th>
+      <th>Imagem da lavoura</th>
+      <th>Preço</th>
+      <th>Estação de plantio</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-lavouras>
+    <tr [pSelectableRow]="lavouras">
+      <td> {{ lavouras.Nome_cultivo }} </td>
+      <td> {{ lavouras.Imagem_cultivo }} </td>
+      <td> {{ lavouras.Preco_de_venda_cultivo }} </td>
+      <td> {{ lavouras.Estacao }}</td>
+    </tr>
+  </ng-template>
+</p-table>
